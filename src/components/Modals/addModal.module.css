@@ -1,0 +1,33 @@
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+  backdrop-filter: blur(10px);
+}
+.modal_content {
+  position: absolute;
+  top: 50%;
+  left: 61%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #fff;
+  padding: 36px 56px;
+  border-radius: none;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+h2,
+label,
+input {
+  font-family: Nunito;
+}

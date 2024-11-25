@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./Input.css";
 
-export const Input = ({ onSubmit }) => {
+export const Input = ({ onSubmit, setIsAddModal }) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = () => {
@@ -12,7 +12,7 @@ export const Input = ({ onSubmit }) => {
 
     setInput("");
   };
-
+  const handleClick = () => setIsAddModal(true);
   return (
     <div className="container">
       {/* <input
@@ -21,7 +21,11 @@ export const Input = ({ onSubmit }) => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       /> */}
-      <button onClick={handleSubmit} className="button">
+      <button
+        // onClick={handleSubmit}
+        onClick={handleClick}
+        className="button"
+      >
         Add Task
       </button>
     </div>

@@ -2,15 +2,11 @@
 import { useState, useEffect } from "react";
 import { TiChevronLeft } from "react-icons/ti";
 import { MdDashboardCustomize } from "react-icons/md";
-import { HiInboxArrowDown } from "react-icons/hi2";
 import { LiaSignOutAltSolid } from "react-icons/lia";
-import { RiContactsLine } from "react-icons/ri";
 import { AiOutlineSchedule } from "react-icons/ai";
-import { TbBrandCampaignmonitor } from "react-icons/tb";
-import { IoSettingsOutline } from "react-icons/io5";
 import { IoIosArrowBack } from "react-icons/io";
 import { MdSearch } from "react-icons/md";
-import { VscAccount } from "react-icons/vsc";
+import { Link } from "react-router-dom";
 // import Image from "next/image";
 
 export default function Sidebar({
@@ -24,8 +20,7 @@ export default function Sidebar({
   const loading = false;
 
   // SignOut Functionality
-  //   const supabase = createClientComponentClient();
-  // const router = useRouter();
+
   const handleSignOut = async () => {
     // await supabase.auth.signOut();
     // router.push("/");
@@ -54,46 +49,18 @@ export default function Sidebar({
 
   const MenuLinks = [
     {
-      title: "Dashboard",
+      title: "Create Task",
       src: <MdDashboardCustomize />,
       onClick: handleNavigate,
     },
+
     {
-      title: "Inbox",
-      src: <HiInboxArrowDown />,
-      onClick: handleNavigate,
-    },
-    {
-      title: "Schedule",
+      title: "All Tasks",
       src: <AiOutlineSchedule />,
       gap: false,
       onClick: handleNavigate,
     },
-    {
-      title: "Analytics",
-      src: <TbBrandCampaignmonitor />,
-      onClick: handleNavigate,
-    },
-    {
-      title: "Contacts",
-      src: <RiContactsLine />,
-      onClick: handleNavigate,
-    },
 
-    {
-      title: "Settings",
-
-      src: <IoSettingsOutline />,
-      gap: true,
-      onClick: handleNavigate,
-    },
-    {
-      title: "Accounts",
-
-      src: <VscAccount />,
-      gap: false,
-      onClick: handleNavigate,
-    },
     {
       title: "Sign Out",
       src: <LiaSignOutAltSolid />,
@@ -148,7 +115,7 @@ export default function Sidebar({
                 !toggle && "scale-[0.3]"
               } cursor-pointer hover:animate-pulse duration-500 mb-2`}
             >
-              Todo-LIST
+              LIST
             </h1>
           </div>
           {/* Link Items */}
@@ -233,14 +200,14 @@ export default function Sidebar({
       ) : (
         <aside
           className={` ${
-            miniToggle ? "w-72" : "fixed left-[-15%] duration-500 "
+            miniToggle ? "w-72" : "fixed left-[-10%] duration-500 "
           }  ease-in-out duration-500 h-screen   bg-[#122156]
  fixed left-0 top-0 md:relative p-5 pt-8 z-50`}
         >
           <IoIosArrowBack
             onClick={() => setMiniToggle(!miniToggle)}
             alt="Controller icon for collapsable sidebar"
-            className={`absolute bg-slate-200 font-[600] cursor-pointer text-ui_secondary1  rounded-md h-10 -right-14 p-2 top-28 shadow-[-5px 0px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)] w-10 ${
+            className={`absolute bg-slate-200 font-[600] cursor-pointer text-slate-700  rounded-md h-10 -right-14 p-2 top-28 shadow-[-5px 0px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)] w-10 ${
               !miniToggle && "rotate-180"
             } ease-in-out duration-500`}
           />
@@ -253,13 +220,14 @@ export default function Sidebar({
                 !miniToggle && "scale-[0.3]"
               } cursor-pointer hover:animate-pulse duration-500`}
             >
-              Todo-LIST
+              To-LIST
             </h1>
           </div>
           {/* Link Items */}
           <ul className="pt-6">
             {MenuLinks.map((menu, index) => (
-              <li
+              <Link
+                to="/all-tasks"
                 key={index}
                 className={`text-slate-200 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-slate-50 hover:text-ui_secondary1 bg-transparent rounded-md duration-500 ${
                   menu.gap ? "mt-9" : "mt-5"
@@ -274,7 +242,7 @@ export default function Sidebar({
               >
                 <div
                   className={` md:h-4 md:w-4  ${
-                    activeLink === index && "text-ui_secondary1"
+                    activeLink === index && "text-slate-400"
                   } `}
                 >
                   {menu.src}
@@ -287,7 +255,7 @@ export default function Sidebar({
                   {" "}
                   {menu.title}{" "}
                 </span>
-              </li>
+              </Link>
             ))}
 
             <div
