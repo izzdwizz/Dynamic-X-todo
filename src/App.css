@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+.App {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  margin-top: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #33333382;
+  background-color: #000;
+  border-radius: 40px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fefefe;
+  background-color: #a0a0a011;
+  margin-top: 5px;
+  margin-right: 2px;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Nunito;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(
+      circle at right top,
+      #ebefffb7 0%,
+      #ebefff 50%,
+      #ebefff 100%
+    ),
+    radial-gradient(
+      circle at right top,
+      rgba(97, 115, 255, 0.637) 10%,
+
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  background-repeat: no-repeat;
+  background: #eaeefe;
+  min-height: max-content;
+  overflow-x: hidden;
+}
+
+/* ROWS */
+
+/* Header text */
+h1 {
+  color: #122156;
+  text-align: center;
+  color: #ac91fe;
+  font-family: Nunito;
+  color: #122156bb;
+}
+
+p {
+  color: #122156;
+  text-align: center;
+  font-weight: 700;
+}

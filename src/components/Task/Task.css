@@ -1,0 +1,80 @@
+.todo-rows {
+  padding: 0.7rem 2rem;
+  border-radius: 15px;
+  background: #fefefed8;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  box-shadow: 0 44.7757px 52.222px rgb(89 89 89 / 0%),
+    0 20.1753px 27.9204px rgb(89 89 89 / 0%),
+    0 6.13165px 15.6519px rgba(89, 89, 89, 0.0464559),
+    0 -1.08328px 8.31263px rgba(89, 89, 89, 0.033453);
+  color: #122156;
+  transition: all 0.3s;
+  margin-bottom: 1rem;
+  max-width: 40rem;
+  min-width: 20rem;
+  /* width: max-content; */
+  word-wrap: break-word;
+  height: auto;
+  touch-action: none;
+}
+
+.todo-rows:hover {
+  box-shadow: 0 44.7757px 52.222px rgba(89, 89, 89, 0.0654574),
+    0 20.1753px 27.9204px rgba(89, 89, 89, 0.0572737),
+    0 6.13165px 15.6519px rgba(89, 89, 89, 0.0464559),
+    0 -1.08328px 8.31263px rgba(89, 89, 89, 0.033453);
+
+  cursor: pointer;
+}
+
+.todo-heading h2 {
+  margin-bottom: 0;
+  font-family: Nunito;
+}
+
+.todo-heading p {
+  color: #122156bb;
+  max-width: 38rem;
+  word-wrap: break-word;
+  text-align: left;
+  font-weight: 200;
+  font-family: Nunito;
+}
+.todo-heading {
+  margin-bottom: 10px;
+}
+
+.todo-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todo-button .delete {
+  padding: 0.5rem 2rem;
+  border: none;
+  background: #fb3434;
+  color: #fefefe;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+}
+.todo-button .update {
+  background: #efefef;
+  padding: 0.5rem 2rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+}
+.todo-button .delete:hover,
+.update:hover {
+  scale: 1.05;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+}
