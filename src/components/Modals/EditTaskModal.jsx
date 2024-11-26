@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import styles from "./addModal.module.css";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
-const EditTaskModal = ({
-  toggleAddModal,
-  addTask,
-  setIsEditModal,
-  setIsViewModal,
-}) => {
+import { useTaskContext } from "../../Context/TaskContext";
+const EditTaskModal = ({ addTask }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   // Function to adjust textarea height dynamically based on content
+  const { toggleViewModal, toggleEditModal } = useTaskContext();
   const autoAdjustTextareaHeight = (element) => {
     if (element) {
       element.style.height = "auto";
@@ -18,9 +15,8 @@ const EditTaskModal = ({
   };
 
   const closeAllModals = () => {
-    toggleAddModal();
-    setIsViewModal(false);
-    setIsEditModal(false);
+    toggleViewModal();
+    toggleEditModal();
   };
   return (
     <div className={styles.modal}>
@@ -63,7 +59,10 @@ const EditTaskModal = ({
 
         <button
           className="close-modal absolute top-2 right-3"
-          onClick={closeAllModals}
+          onClick={(e) => {
+            e.preventDefault();
+            closeAllModals();
+          }}
         >
           <MdOutlineCloseFullscreen className="h-5 w-5 text-[#333333c3] hover:text-black" />
         </button>

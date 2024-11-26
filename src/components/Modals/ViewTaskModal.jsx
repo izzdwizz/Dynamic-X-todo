@@ -17,7 +17,7 @@ const ViewTaskModal = ({ toggleViewModal, toggleEditModal }) => {
     <div className={styles.modal}>
       <div onClick={toggleViewModal} className={styles.overlay}></div>
       <div className={`${styles.modal_content} relative rounded-[10px]`}>
-        <h2 className="text-[#122156] font-[700] text-[1.5rem] pb-4">
+        <h2 className="text-[#122156] font-[700] text-[1rem] md:text-[1.5rem] pb-4">
           View Task
         </h2>
 
@@ -46,21 +46,21 @@ const ViewTaskModal = ({ toggleViewModal, toggleEditModal }) => {
         </div>
         <div className="flex flex-row w-full items-end py-2 text-[1rem] gap-4 justify-end  font-[Nunito] relative">
           <button
-            className="px-5 py-2 mt-6 bg-[#122156] text-white rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
+            className="px-3 md:px-5 py-1 md:py-2 mt-6 bg-[#122156]  md:text-[1rem] text-[.8rem] text-white rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
             onClick={() => addTask(title, description)}
           >
             {" "}
             Completed
           </button>
           <button
-            className="px-5 py-2 mt-6 bg-[#122156] text-white rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
+            className="px-3 md:px-5 py-1 md:py-2 mt-6 bg-[#122156]  md:text-[1rem] text-[.8rem] text-white rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
             onClick={() => addTask(title, description)}
           >
             {" "}
             Incomplete
           </button>
           <button
-            className="px-5 py-2 mt-6 bg-[#efefef;] text-slate-900 rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
+            className="px-3 md:px-5 py-1 md:py-2 mt-6 bg-[#efefef;] md:text-[1rem] text-[.8rem]  text-slate-900 rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               toggleEditModal();
@@ -69,7 +69,7 @@ const ViewTaskModal = ({ toggleViewModal, toggleEditModal }) => {
             {" "}
             Edit
           </button>
-          <button className="px-5 py-2 mt-6 bg-[#fb3434] text-[#fefefe] rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer">
+          <button className="px-3 md:px-5 py-1 md:py-2 mt-6 bg-[#fb3434]  md:text-[1rem] text-[.8rem] text-[#fefefe] rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer">
             {" "}
             Delete
           </button>

@@ -4,11 +4,11 @@ import { CSS } from "@dnd-kit/utilities";
 import "./Task.css";
 import { useTaskContext } from "../../Context/TaskContext";
 
-export const Task = ({ task, toggleViewModal }) => {
+export const AllTasks = ({ task, id, toggleViewModal }) => {
   const { setSelectedTask } = useTaskContext();
 
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: task?.id });
+    useSortable({ id });
 
   const style = {
     transition,
@@ -28,10 +28,16 @@ export const Task = ({ task, toggleViewModal }) => {
       onMouseDown={handleClick}
     >
       <div className="todo-heading">
-        <h2 className="font-bold text-[1.5rem] pb-1">
-          {task?.id}. {task?.title}
-        </h2>
-        <p className="text-[1rem] ml-6">{task?.description}</p>
+        <h2 className="font-bold text-[1.5rem] pb-1"> {task?.title}</h2>
+        <p className="text-[1rem]">{task?.description}</p>
+      </div>
+      <div className="todo-button pt-8">
+        <button className="delete rounded-full relative z-[100000]">
+          Delete
+        </button>
+        <button className="update rounded-full relative z-[100000]">
+          Edit
+        </button>
       </div>
     </div>
   );

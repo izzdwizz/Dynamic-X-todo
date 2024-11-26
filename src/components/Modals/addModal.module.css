@@ -16,7 +16,7 @@
 .modal_content {
   position: absolute;
   top: 50%;
-  left: 61%;
+  left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #fff;
@@ -24,6 +24,13 @@
   border-radius: none;
   max-width: 600px;
   min-width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .modal_content {
+    min-width: 200px;
+    padding: 20px 30px;
+  }
 }
 
 h2,

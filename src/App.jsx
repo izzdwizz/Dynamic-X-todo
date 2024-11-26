@@ -15,13 +15,10 @@ import { Input } from "./components/Input/Input";
 import "./App.css";
 import Layout from "./Layout";
 import AddTaskModal from "./components/Modals/addTaskModal";
+import { useTaskContext } from "./Context/TaskContext";
 
 export default function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: "Add tests to homepage" },
-    { id: 2, title: "Fix styling in about section" },
-    { id: 3, title: "Learn how to center a div" },
-  ]);
+  const { tasks, setTasks } = useTaskContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(false);
 
@@ -78,7 +75,6 @@ export default function App() {
             sensors={sensors}
             collisionDetection={closestCorners}
             onDragEnd={handleDragEnd}
-            onClick={() => alert("Welcome")}
           >
             <div className="flex flex-col gap-0 items-start md:mt-[4rem]">
               <p className="text-left">Existing Tasks</p>

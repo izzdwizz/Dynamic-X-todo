@@ -137,7 +137,7 @@ export default function Sidebar({
               </Link>
             ))}
             <div
-              className="text-accent_3 text-sm flex items-center gap-x-4 cursor-pointer p-2  hover:bg-white  hover:text-ui_secondary1 bg-transparent mt-8 rounded-md duration-500"
+              className="text-accent_3 text-sm flex items-center gap-x-4 cursor-pointer p-2  hover:bg-white  hover:text-slate-700 bg-transparent mt-8 rounded-md   "
               onClick={() => setToggle(!toggle)}
             >
               <div className=" ">
@@ -213,7 +213,7 @@ export default function Sidebar({
               <Link
                 to={menu.link}
                 key={index}
-                className={`text-slate-200 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-slate-50 hover:text-ui_secondary1 bg-transparent rounded-md duration-500 ${
+                className={`text-slate-200 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-slate-50 hover:text-slate-700 bg-transparent rounded-md   ${
                   menu.gap ? "mt-9" : "mt-5"
                 }  `}
                 onClick={() => {
