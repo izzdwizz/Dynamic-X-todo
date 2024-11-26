@@ -2,18 +2,21 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
 import "./Task.css";
+import { useTaskContext } from "../../Context/TaskContext";
 
-export const Task = ({ id, title, description, toggleViewModal }) => {
+export const Task = ({ task, toggleViewModal }) => {
+  const { setSelectedTask } = useTaskContext();
+
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+    useSortable({ id: task?.id });
 
   const style = {
     transition,
     transform: CSS.Transform.toString(transform),
   };
-  const handleClick = (task) => {
+  const handleClick = () => {
     toggleViewModal();
-    console.log(isOpen, task);
+    setSelectedTask(task);
   };
   return (
     <div
@@ -22,11 +25,11 @@ export const Task = ({ id, title, description, toggleViewModal }) => {
       {...attributes}
       {...listeners}
       className="todo-rows md:min-w-[40rem] min-w-[15rem]"
-      onMouseDown={() => handleClick(id)}
+      onMouseDown={handleClick}
     >
       <div className="todo-heading">
-        <h2 className="font-bold text-[1.5rem] pb-1"> {title}</h2>
-        <p className="text-[1rem]">{description}</p>
+        <h2 className="font-bold text-[1.5rem] pb-1"> {task?.title}</h2>
+        <p className="text-[1rem]">{task?.description}</p>
       </div>
       <div className="todo-button pt-8">
         <button

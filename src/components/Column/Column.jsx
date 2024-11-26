@@ -11,13 +11,7 @@ export const Column = ({ tasks, toggleViewModal }) => {
     <div className="column md:relative md:-left-10  ">
       <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
         {tasks.map((task) => (
-          <Task
-            key={task.id}
-            id={task.id}
-            title={task.title}
-            description={task.description}
-            toggleViewModal={toggleViewModal}
-          />
+          <Task key={task.id} task={task} toggleViewModal={toggleViewModal} />
         ))}
       </SortableContext>
     </div>

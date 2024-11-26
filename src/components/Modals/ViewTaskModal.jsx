@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./addModal.module.css";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
-const ViewTaskModal = ({
-  toggleViewModal,
-  toggleEditModal,
-  title,
-  description,
-}) => {
+import { useTaskContext } from "../../Context/TaskContext";
+const ViewTaskModal = ({ toggleViewModal, toggleEditModal }) => {
+  const { selectedTask } = useTaskContext();
+
   const toggleEdit = () => {};
   // Function to adjust textarea height dynamically based on content
   const autoAdjustTextareaHeight = (element) => {
@@ -28,8 +26,8 @@ const ViewTaskModal = ({
           <input
             className="input border-[1px] border-[#12215641] cursor-not-allowed bg-slate-100"
             type="text"
-            value={title}
-            placeholder={title ?? "Title"}
+            value={selectedTask?.title ?? "Title"}
+            placeholder={selectedTask?.title ?? "Title"}
             disabled={true}
           />
         </div>
@@ -37,12 +35,12 @@ const ViewTaskModal = ({
           <label>Task Description</label>
 
           <textarea
-            value={description}
-            className="border-[1px] border-[#12215641] outline-none p-2 w-full resize-none rounded cursor-not-allowed bg-slate-100 "
+            value={selectedTask?.description ?? "Description"}
+            className="border-[1px] border-[#12215641] outline-none p-2 w-full resize-none rounded cursor-not-allowed bg-slate-100 placeholder:text-slate-400"
             style={{ height: "auto", minHeight: "110px" }}
             rows={2}
             disabled={true}
-            placeholder={description ?? "Description"}
+            placeholder={selectedTask?.description ?? "Description"}
             ref={(textarea) => textarea && autoAdjustTextareaHeight(textarea)}
           />
         </div>
