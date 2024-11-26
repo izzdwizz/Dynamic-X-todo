@@ -78,13 +78,17 @@ export default function App() {
             sensors={sensors}
             collisionDetection={closestCorners}
             onDragEnd={handleDragEnd}
+            onClick={() => alert("Welcome")}
           >
-            <Column
-              id="toDo"
-              tasks={tasks}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-            />
+            <div className="flex flex-col gap-0 items-start md:mt-[4rem]">
+              <p className="text-left">Existing Tasks</p>
+              <Column
+                id="toDo"
+                tasks={tasks}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+              />
+            </div>
           </DndContext>
         </div>
       </Layout>

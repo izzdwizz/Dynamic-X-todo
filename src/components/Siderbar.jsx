@@ -5,9 +5,7 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { IoIosArrowBack } from "react-icons/io";
-import { MdSearch } from "react-icons/md";
 import { Link } from "react-router-dom";
-// import Image from "next/image";
 
 export default function Sidebar({
   miniToggle,
@@ -22,27 +20,9 @@ export default function Sidebar({
   // SignOut Functionality
 
   const handleSignOut = async () => {
-    // await supabase.auth.signOut();
-    // router.push("/");
     alert("We are signing out");
-    // if (loading) {
-    //   return <Spinner />;
-    // }
   };
 
-  //Handling Navigation for the sidebar
-  const handleNavigate = (point) => {
-    // return router.push(`/auth/dashboard/${point}`);
-    return alert(point);
-  };
-
-  // retrieving user information from currentUser.js
-  //   const name = user?.user_metadata?.name?.split(" ");
-  //   const firstName = name?.[0];
-  //   const LastName = name?.[1];
-  // State Management for smaller screens
-  // const [miniToggle, setMiniToggle] = useState(true);
-  // const [miniSidebar, setMiniSidebar] = useState(false);
   // State Management for regular sized screens
   const [toggle, setToggle] = useState(true);
   const [activeLink, setActiveLink] = useState(false);
@@ -51,14 +31,15 @@ export default function Sidebar({
     {
       title: "Create Task",
       src: <MdDashboardCustomize />,
-      onClick: handleNavigate,
+      link: "/create-task",
     },
 
     {
       title: "All Tasks",
       src: <AiOutlineSchedule />,
+      link: "/all-tasks",
+
       gap: false,
-      onClick: handleNavigate,
     },
 
     {
@@ -97,7 +78,7 @@ export default function Sidebar({
         <aside
           className={` ${
             toggle ? "w-96" : "w-20"
-          }  ease-in-out duration-500 h-screen bg-[#000070] fixed left-0 top-0 md:relative p-5 pt-8 z-50`}
+          }  ease-in-out duration-500 h-screen bg-[#122156] fixed left-0 top-0 md:relative p-5 pt-8 z-50`}
         >
           <TiChevronLeft
             alt="Controller icon for collapsable sidebar"
@@ -121,7 +102,8 @@ export default function Sidebar({
           {/* Link Items */}
           <ul className="pt-6">
             {MenuLinks.map((menu, index) => (
-              <li
+              <Link
+                to={menu.link}
                 key={index}
                 className={`text-[#a0a0a0] text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-slate-50 group bg-transparent rounded-md duration-500 ${
                   menu.gap ? "mt-9" : "mt-3"
@@ -152,7 +134,7 @@ export default function Sidebar({
                   {" "}
                   {menu.title}{" "}
                 </span>
-              </li>
+              </Link>
             ))}
             <div
               className="text-accent_3 text-sm flex items-center gap-x-4 cursor-pointer p-2  hover:bg-white  hover:text-ui_secondary1 bg-transparent mt-8 rounded-md duration-500"
@@ -200,7 +182,9 @@ export default function Sidebar({
       ) : (
         <aside
           className={` ${
-            miniToggle ? "w-72" : "fixed left-[-10%] duration-500 "
+            miniToggle
+              ? "w-72"
+              : "fixed left-[-40%] md:left-[-10%] duration-500 "
           }  ease-in-out duration-500 h-screen   bg-[#122156]
  fixed left-0 top-0 md:relative p-5 pt-8 z-50`}
         >
@@ -227,7 +211,7 @@ export default function Sidebar({
           <ul className="pt-6">
             {MenuLinks.map((menu, index) => (
               <Link
-                to="/all-tasks"
+                to={menu.link}
                 key={index}
                 className={`text-slate-200 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-slate-50 hover:text-ui_secondary1 bg-transparent rounded-md duration-500 ${
                   menu.gap ? "mt-9" : "mt-5"
@@ -257,20 +241,6 @@ export default function Sidebar({
                 </span>
               </Link>
             ))}
-
-            <div
-              className={`bg-[#fff] shadow-md rounded-md flex gap-2 justify-between px-3 py-0 items-center mt-8 md:hidden ${
-                !miniToggle && "left-[-100%] duration-500 "
-              } `}
-            >
-              <input
-                type="text"
-                placeholder="Search"
-                className="outline-none bg-transparent px-3 py-2 text-[0.8rem] font-poppins text-black placeholder-accent_3 "
-              />
-
-              <MdSearch className="text-ui_primary font-[900] h-5 w-5 cursor-pointer" />
-            </div>
           </ul>
         </aside>
       )}

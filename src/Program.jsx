@@ -7,9 +7,9 @@ const Program = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<App />} />
+        <Route exact path="/create-task" element={<App />} />
         <Route exact path="/all-tasks" element={<AllTasks />} />
-        <Route exact path="/sign-in" element={<SignIn />} />
+        <Route exact path="/" element={<SignIn />} />
         {/* <Route exact path='/account/*' element={<AllTasks />}>
 					<Route path='home' element={<Home />} />
 
