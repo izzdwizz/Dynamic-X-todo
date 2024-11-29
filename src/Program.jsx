@@ -10,13 +10,6 @@ const Program = () => {
         <Route exact path="/create-task" element={<App />} />
         <Route exact path="/all-tasks" element={<AllTasks />} />
         <Route exact path="/" element={<SignIn />} />
-        {/* <Route exact path='/account/*' element={<AllTasks />}>
-					<Route path='home' element={<Home />} />
-
-					<Route path='buy' element={<Buy />} />
-					<Route path='sell' element={<Sell />} />
-					<Route path='account' element={<Account />} />
-				</Route> */}
       </Routes>
     </BrowserRouter>
   );
