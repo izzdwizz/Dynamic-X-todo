@@ -94,9 +94,5 @@ The application uses `react-router-dom` for navigation. Below are the routes:
 | `lint`    | Runs ESLint to check for errors. |
 | `preview` | Previews the production build.   |
 
-## Contribution
-
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes and push the branch.
-4. Open a pull request.
+ 
+ 
