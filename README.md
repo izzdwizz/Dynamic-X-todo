@@ -31,7 +31,7 @@ This is the client-side code for the Dynamic-X To-Do List application, built wit
 
    ```bash
    git clone <repository-url>
-   cd dynamic-x-frontend
+   cd dynamic-X-todo
    ```
 
 2. Install dependencies:
