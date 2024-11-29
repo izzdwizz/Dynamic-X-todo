@@ -16,8 +16,7 @@ export const Task = ({ task }) => {
     transform: CSS.Transform.toString(transform),
   };
   const handleClick = () => {
-    toggleViewModal();
-    navigate("/all-tasks");
+    // navigate("/all-tasks");
     setSelectedTask(task);
   };
   return (
@@ -26,7 +25,9 @@ export const Task = ({ task }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="todo-rows md:min-w-[40rem] min-w-[15rem]"
+      className={`todo-rows md:min-w-[40rem] min-w-[15rem] border-r-8 ${
+        task?.isCompleted ? " border-blue-400" : "border-gray-400"
+      } `}
       onMouseDown={handleClick}
     >
       <div className="todo-heading">

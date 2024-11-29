@@ -24,7 +24,9 @@ export const AllTasks = ({ task, id, toggleViewModal }) => {
       style={style}
       {...attributes}
       {...listeners}
-      className="todo-rows md:min-w-[40rem] min-w-[15rem]"
+      className={`todo-rows md:min-w-[40rem] min-w-[15rem] border-r-8 ${
+        task?.isCompleted ? " border-blue-400" : "border-gray-400"
+      } `}
       onMouseDown={handleClick}
     >
       <div className="todo-heading">
