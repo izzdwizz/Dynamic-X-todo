@@ -11,6 +11,7 @@ const AddTaskModal = ({ toggleAddModal, addTask }) => {
       element.style.height = element.scrollHeight + "px";
     }
   };
+
   return (
     <div className={styles.modal}>
       <div
@@ -48,7 +49,10 @@ const AddTaskModal = ({ toggleAddModal, addTask }) => {
         <div className="flex flex-col w-full items-end py-2 text-[1rem] gap-4 justify-end  font-[Nunito] relative">
           <button
             className="px-5 py-2 mt-6 bg-[#122156] text-white rounded-full hover:scale-110 duration-200 ease-in-out cursor-pointer"
-            onClick={() => addTask(title, description)}
+            onClick={(e) => {
+              e.preventDefault();
+              addTask(title, description);
+            }}
           >
             {" "}
             Add Task

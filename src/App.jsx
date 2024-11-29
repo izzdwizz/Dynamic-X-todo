@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DndContext,
   KeyboardSensor,
@@ -8,25 +8,55 @@ import {
   closestCorners,
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
-
 import { Column } from "./components/Column/Column";
 import { Input } from "./components/Input/Input";
-
 import "./App.css";
 import Layout from "./Layout";
 import AddTaskModal from "./components/Modals/addTaskModal";
 import { useTaskContext } from "./Context/TaskContext";
+import { useAuthContext } from "./Context/AuthContext";
+import { useCreateTask } from "./hooks/task/tasks";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function App() {
   const { tasks, setTasks } = useTaskContext();
   const [isOpen, setIsOpen] = useState(false);
   const [isAddModal, setIsAddModal] = useState(false);
+  const { userData, userToken } = useAuthContext();
+  const { mutate: createTask } = useCreateTask();
+  const navigate = useNavigate();
+  console.log("token and data are as follows:", userData, userToken);
+  useEffect(() => {
+    setTimeout(() => {
+      if (!userToken) {
+        navigate("/");
+      }
+    }, 5000);
+  }, []);
 
   const addTask = (title, description) => {
     setTasks((tasks) => [
       ...tasks,
       { id: tasks.length + 1, title, description },
     ]);
+    createTask(
+      { title, description },
+      {
+        onSuccess: (response) => {
+          setTasks(response?.data);
+
+          if (response?.data) {
+            toast.success("Successfully created task");
+
+            setTimeout(() => navigate("/all-tasks"), 5000);
+          }
+        },
+        onError: (error) => {
+          toast.error("Unfortunately an error occured:", error);
+        },
+      }
+    );
   };
 
   const sensors = useSensors(

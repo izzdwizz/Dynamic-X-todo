@@ -1,29 +1,32 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Create the context
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([
-    { id: 1, title: "Add tests to homepage", description: "Some description" },
-    {
-      id: 2,
-      title: "Fix styling in about section",
-      description: "Some description",
-    },
-    {
-      id: 3,
-      title: "Learn how to center a div",
-      description: "Some description",
-    },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("tasks") || [];
+    }
+    return null;
+  });
   const [selectedTask, setSelectedTask] = useState(null);
   const [isViewModal, setIsViewModal] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
 
   const toggleViewModal = () => setIsViewModal((prev) => !prev);
   const toggleEditModal = () => setIsEditModal((prev) => !prev);
-  console.log(selectedTask);
+
+  // fetch data from local storage
+  useEffect(() => {
+    if (tasks && typeof window !== "undefined") {
+      localStorage.setItem("tasks", tasks);
+    } else if (typeof window !== "undefined") {
+      localStorage.removeItem("tasks");
+    }
+  }, [tasks]);
+  // console.log(selectedTask);
+  console.log("availables tasks are:", tasks);
   return (
     <TaskContext.Provider
       value={{
