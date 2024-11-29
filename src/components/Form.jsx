@@ -17,8 +17,7 @@ export const Form = ({
   const [errors, setErrors] = useState({});
   const { mutate: loginUser } = useLoginUser();
   const { mutate: registerUser } = useRegisterUser();
-  const { userData, setUserData, userToken, setUserToken, setUser_id } =
-    useAuthContext();
+  const { setUserData, setUserToken } = useAuthContext();
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,14 +43,12 @@ export const Form = ({
     });
     return newErrors;
   };
-  console.log(title);
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log("Form Data:", formData);
       if (title === "Login") {
         loginUser(formData, {
           onSuccess: (response) => {
@@ -70,11 +67,8 @@ export const Form = ({
       } else {
         registerUser(formData, {
           onSuccess: (response) => {
-            console.log("userdata is:", response?.data);
-
             if (response?.data) {
               setUserData(response?.data?.data);
-              console.log("userdata is:", response?.data?.data);
 
               toast.success("User successfully registered!");
               setFormData({});
@@ -82,15 +76,9 @@ export const Form = ({
             }
           },
           onError: (error) => {
-            console.log(error);
             toast.error("Unfortunately an error occured:", error);
           },
         });
-
-        // registerUser({
-        //   email: "user@example.com",
-        //   password: "securePassword123",
-        // });
       }
     }
   };

@@ -5,7 +5,9 @@ import { MdDashboardCustomize } from "react-icons/md";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function Sidebar({
   miniToggle,
@@ -13,14 +15,19 @@ export default function Sidebar({
   miniSidebar,
   setMiniSidebar,
 }) {
-  //   const { user, loading } = useCurrentUser();
-
+  const { setUserToken, setUserData, setTasks } = useAuthContext();
   const loading = false;
 
   // SignOut Functionality
-
+  const navigate = useNavigate();
   const handleSignOut = async () => {
-    alert("We are signing out");
+    setUserToken(null);
+    setTasks(null);
+
+    toast.success("Logging out");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
 
   // State Management for regular sized screens
@@ -65,8 +72,6 @@ export default function Sidebar({
       };
     }
   }, []);
-
-  console.log("Current miniSidebar state:", miniSidebar); // Move console.log here or within the return statement
 
   return (
     <>

@@ -28,28 +28,25 @@ export default function App() {
   const navigate = useNavigate();
   console.log("token and data are as follows:", userData, userToken);
   useEffect(() => {
-    setTimeout(() => {
-      if (!userToken) {
+    if (!userToken) {
+      toast.error("Unauthorized");
+      setTimeout(() => {
         navigate("/");
-      }
-    }, 5000);
+      }, 5000);
+    }
   }, []);
 
   const addTask = (title, description) => {
-    setTasks((tasks) => [
-      ...tasks,
-      { id: tasks.length + 1, title, description },
-    ]);
     createTask(
       { title, description },
       {
         onSuccess: (response) => {
-          setTasks(response?.data);
+          setTasks((tasks) => [...tasks, response?.data]);
 
           if (response?.data) {
             toast.success("Successfully created task");
-
-            setTimeout(() => navigate("/all-tasks"), 5000);
+            console.log("this is where we see updated tasks", tasks);
+            setTimeout(() => navigate("/all-tasks"), 2000);
           }
         },
         onError: (error) => {
@@ -84,7 +81,6 @@ export default function App() {
   const toggleAddModal = () => {
     setIsAddModal(!isAddModal);
   };
-  // VIEW FUNCTION
 
   return (
     <>

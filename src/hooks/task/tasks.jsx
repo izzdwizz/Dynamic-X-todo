@@ -9,11 +9,11 @@ export function useGetTasks() {
     queryKey: [`getTasks`],
     queryFn: () => API.get(`/getTask`),
     refetchOnMount: true,
-    refetchInterval: 2000,
+    refetchInterval: 5000,
   });
 }
 export function useUpdateTask() {
-  return useMutation((task_id) => API.put(`/${task_id}`));
+  return useMutation(({ task_id, data }) => API.put(`/${task_id}`, data));
 }
 
 export function useDeleteTask() {

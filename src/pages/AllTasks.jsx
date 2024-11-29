@@ -9,13 +9,16 @@ import {
 } from "@dnd-kit/core";
 import { arrayMove, sortableKeyboardCoordinates } from "@dnd-kit/sortable";
 
-import { Column } from "../components/Column/Column";
-
 import Layout from "../Layout";
 import EditTaskModal from "../components/Modals/EditTaskModal";
 import ViewTaskModal from "../components/Modals/ViewTaskModal";
 import { useTaskContext } from "../Context/TaskContext";
 import { AllColumns } from "../components/All Columns/AllColumns";
+import { useEffect, useMemo } from "react";
+import toast from "react-hot-toast";
+import { useAuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useGetTasks } from "../hooks/task/tasks";
 
 export default function AllTasks() {
   const {
@@ -30,6 +33,10 @@ export default function AllTasks() {
     selectedTask,
   } = useTaskContext();
 
+  const { userToken } = useAuthContext();
+  // const { data: getTasks } = useGetTasks();
+
+  const navigate = useNavigate();
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -59,6 +66,15 @@ export default function AllTasks() {
       return arrayMove(tasks, originalPos, newPos);
     });
   };
+
+  useEffect(() => {
+    if (!userToken) {
+      toast.error("Unauthorized");
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+    }
+  }, []);
 
   return (
     <>

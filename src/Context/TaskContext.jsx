@@ -1,15 +1,18 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
+import { useGetTasks } from "../hooks/task/tasks";
 
 // Create the context
 const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
-  const [tasks, setTasks] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("tasks") || [];
-    }
-    return null;
-  });
+  const [tasks, setTasks] = useState([]);
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [isViewModal, setIsViewModal] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
@@ -17,16 +20,18 @@ export const TaskProvider = ({ children }) => {
   const toggleViewModal = () => setIsViewModal((prev) => !prev);
   const toggleEditModal = () => setIsEditModal((prev) => !prev);
 
-  // fetch data from local storage
+  // Fetch tasks frpm API
+  const { data: getTasks } = useGetTasks({
+    onSuccess: () => {
+      setTasks(getTasks?.data || []);
+    },
+  });
+
   useEffect(() => {
-    if (tasks && typeof window !== "undefined") {
-      localStorage.setItem("tasks", tasks);
-    } else if (typeof window !== "undefined") {
-      localStorage.removeItem("tasks");
-    }
-  }, [tasks]);
-  // console.log(selectedTask);
-  console.log("availables tasks are:", tasks);
+    if (getTasks?.data) setTasks(getTasks?.data);
+  }, [getTasks?.data]);
+
+  console.log(getTasks?.data);
   return (
     <TaskContext.Provider
       value={{
